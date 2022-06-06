@@ -31,8 +31,9 @@ import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choise)
 ## remove this line from app --streamlit.text(fruityvice_response.json())-- #this just writes data on the screen
 
-
 #take the json version of the resonse and normalize it
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 #output is on the screen as a table
 streamlit.dataframe(fruityvice_normalized)
+
+import snowflake.connector

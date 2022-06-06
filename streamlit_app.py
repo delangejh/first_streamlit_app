@@ -70,7 +70,7 @@ except URLError as e:
 ## streamlit.text(my_data_row)
 
 #move the Fruit Load List Query and Load into a Button Action
-streamlit.header("The fruit_load_list contains:")
+streamlit.header("The fruit load list contains:")
 #snowflake related functions
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:

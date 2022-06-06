@@ -70,7 +70,7 @@ except URLError as e:
 ## streamlit.text(my_data_row)
 
 #move the Fruit Load List Query and Load into a Button Action
-streamlit.header("The fruit load list contains:")
+streamlit.header("View our Fruit List -Add your favorites!")
 #snowflake related functions
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
@@ -81,14 +81,17 @@ def get_fruit_load_list():
 if streamlit.button('get fruit load list'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows = get_fruit_load_list()
+    my_cnx = close()
     streamlit.dataframe(my_data_rows)
+    
    
 #2nd section to add a response
 #Create a Function and Button to Add the Fruit Name Submissions
 def insert_row_snowflake(new_fruit):
     with my_cnx.cursor() as my_cur:
+        my cur.execute("insert into fruit_load_list values ('" + my_fruit + "')")
 ##         my cur.execute("insert into fruit_load_list values (:1)", (new_fruit))
-         my cur.execute("insert into fruit_load_list values ('" + add_my_fruit + "')")
+##         my cur.execute("insert into fruit_load_list values ('" + add_my_fruit + "')")
 ##         my_cur.execute("insert into fruit_load_list values ('from streamlit')")
          return  "Thanks for adding " + new_fruit
 
